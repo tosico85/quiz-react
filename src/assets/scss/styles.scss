@@ -1,15 +1,21 @@
+@import "config/_variables.scss";
 @import "config/reset.css";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap");
+@import "pages/board.scss";
+//@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Stylish&display=swap");
 
 * {
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  color: black;
+  color: $celadon-blue;
 }
 
 body,
 html {
   height: 100%;
+
+  * {
+    font-family: "Stylish", sans-serif;
+  }
 }
 
 #root {
@@ -18,4 +24,35 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+%button-parent {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+
+%input-parent {
+  border: 0.5px solid silver;
+  border-radius: 5px;
+  padding: 4px;
+  font-size: 20px;
+  &:focus {
+    @extend %input-parent-focus;
+  }
+  &:hover {
+    @extend %input-parent-hover;
+  }
+}
+
+%input-parent-hover {
+  border: 1px solid $celadon-blue;
+}
+
+%input-parent-focus {
+  outline: 0;
+  border: 2px solid $celadon-blue;
 }
