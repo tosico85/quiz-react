@@ -33,13 +33,16 @@ html {
   font-weight: 400;
   font-size: 20px;
   color: white;
+  &:hover {
+    @extend %button-parent-hover;
+  }
 }
 
 %input-parent {
-  border: 0.5px solid silver;
+  border: 1px solid $ebony;
   border-radius: 5px;
   padding: 4px;
-  font-size: 20px;
+  color: $ebony;
   &:focus {
     @extend %input-parent-focus;
   }
@@ -48,11 +51,16 @@ html {
   }
 }
 
+%button-parent-hover {
+  opacity: 0.7;
+}
+
 %input-parent-hover {
-  border: 1px solid $celadon-blue;
+  border: 2px solid $ebony;
+  opacity: 0.7;
 }
 
 %input-parent-focus {
   outline: 0;
-  border: 2px solid $celadon-blue;
+  border: 2px solid $ebony;
 }
