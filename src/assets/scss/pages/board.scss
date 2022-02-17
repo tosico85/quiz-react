@@ -24,7 +24,7 @@
       box-shadow: 0px 2px 5px silver;
       position: absolute;
       width: 100%;
-      background-color: $prussian-blue; //$antique-brass;
+      background-color: $celadon-blue; //$antique-brass;
       color: $honeydew;
       top: 0;
       left: 0;
@@ -50,7 +50,7 @@
         display: flex;
         .input-reg {
           @extend %input-parent;
-          font-size: 10px;
+          font-size: 20px;
           flex-grow: 1;
         }
         .button-reg {

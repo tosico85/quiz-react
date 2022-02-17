@@ -1,0 +1,11 @@
+.header {
+  width: 100%;
+  padding: 20px;
+  background-color: $prussian-blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  * {
+    color: white;
+  }
+}
