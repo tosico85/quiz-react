@@ -13,6 +13,9 @@ const Navigation = () => {
         <li className="header__menu-item">
           <Link to="/">Home</Link>
         </li>
+        <li className="header__menu-item">
+          <Link to="/regist">문제등록</Link>
+        </li>
       </ul>
       <span className="header__logout" onClick={onLogOut}>
         Log Out

@@ -26,7 +26,7 @@ function Board({ who, quiz, onPrev, onNext, updateCorrect, isFirst, isLast }) {
     <div className="board-content">
       <form onSubmit={onSubmit}>
         <h1 className="quiz-title">{quiz.quiz}</h1>
-        {quiz.id !== 9999 && (
+        {!isLast && (
           <div>
             <div className="reg-box">
               <input

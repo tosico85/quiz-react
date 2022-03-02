@@ -1,5 +1,4 @@
-import Quiz from "routes/Quiz";
-import RegQuiz from "routes/RegQuiz";
+import Quiz from "mixins/Quiz";
 import { useEffect, useState } from "react";
 import { dbService } from "fbase";
 

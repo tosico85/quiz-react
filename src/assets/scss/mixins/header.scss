@@ -1,4 +1,7 @@
 .header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
   width: 100%;
   padding: 20px;
   background-color: $prussian-blue;
@@ -6,6 +9,16 @@
   flex-direction: row;
   justify-content: space-between;
   * {
+    text-decoration: none;
     color: white;
+    font-size: 20px;
+  }
+  .header__menu {
+    flex-grow: 1;
+    display: flex;
+
+    .header__menu-item {
+      margin-right: 20px;
+    }
   }
 }

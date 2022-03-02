@@ -1,4 +1,4 @@
-import Board from "./Board";
+import Board from "mixins/Board";
 import { useState } from "react";
 
 function Quiz({ who, quiz_list }) {
@@ -23,7 +23,7 @@ function Quiz({ who, quiz_list }) {
   return (
     <div className="board">
       <h1 className="title">{who} 문제</h1>
-      {quiz_list.map((item, index) => {
+      {quiz_list.map((item, index, self) => {
         if (index === curIndex) {
           return (
             <Board
@@ -33,7 +33,7 @@ function Quiz({ who, quiz_list }) {
               onPrev={onPrev}
               updateCorrect={updateCorrect}
               isFirst={curIndex === 0}
-              isLast={item.id === 9999}
+              isLast={curIndex >= self.length - 1}
               key={item.id}
             />
           );
