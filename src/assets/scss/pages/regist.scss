@@ -26,47 +26,62 @@
     }
   }
 
+  .reg-mode {
+    background-color: #eeeeee;
+  }
+  .quiz-card {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px silver;
+    font-size: 20px;
+
+    .quiz-item {
+      padding: 5px 0px;
+      display: flex;
+
+      .label {
+        width: 40px;
+        margin-right: 10px;
+        color: $imperial-red;
+      }
+
+      .content {
+        flex-grow: 1;
+        color: $prussian-blue;
+      }
+
+      input {
+        font-size: 18px;
+        padding: 5px;
+      }
+    }
+  }
+
   .quiz-list {
-    ul .quiz-card {
-      width: 100%;
-      margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 5px 5px 10px silver;
-      font-size: 20px;
+    ul li {
       &:hover {
         background-color: $champagne-pink;
       }
       /* background-color: $honeydew; */
-
-      .quiz-item {
-        margin-bottom: 5px;
-
-        .label {
-          margin-right: 10px;
-          color: $imperial-red;
-        }
-
-        .content {
-          color: $prussian-blue;
-        }
-      }
-
-      .edit-buttons {
-        text-align: center;
-        button {
-          @extend %button-parent;
-          margin: 0px 10px;
-        }
-        .btn-modify {
-          padding: 5px 20px;
-          background-color: $celadon-blue;
-        }
-        .btn-delete {
-          padding: 5px 20px;
-          background-color: $imperial-red;
-        }
-      }
     }
+  }
+}
+.edit-buttons {
+  text-align: center;
+  margin-top: 5px;
+
+  button {
+    @extend %button-parent;
+    margin: 0px 10px;
+  }
+  .btn-modify {
+    padding: 5px 20px;
+    background-color: $celadon-blue;
+  }
+  .btn-delete {
+    padding: 5px 20px;
+    background-color: $imperial-red;
   }
 }
