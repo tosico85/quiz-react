@@ -1,24 +1,31 @@
 import { useInput } from "hooks/useInput";
 
-function RegQuiz({ addList }) {
-  const quizInput = useInput("");
-  const answerInput = useInput("");
-  const missionInput = useInput("");
-  const ordInput = useInput("");
+function RegForm({ addList, cancelEdit, quiz, updateList }) {
+  const quizInput = useInput(quiz !== null ? quiz.quiz : "");
+  const answerInput = useInput(quiz !== null ? quiz.answer : "");
+  const missionInput = useInput(quiz !== null ? quiz.mission : "");
+  const ordInput = useInput(quiz !== null ? quiz.ord : "");
 
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    addList(
-      quizInput.value,
-      answerInput.value,
-      missionInput.value,
-      ordInput.value
-    );
+    if (quiz === null) {
+      addList(
+        quizInput.value,
+        answerInput.value,
+        missionInput.value,
+        ordInput.value
+      );
+    } else {
+      updateList(
+        quizInput.value,
+        answerInput.value,
+        missionInput.value,
+        ordInput.value
+      );
+    }
 
-    /* quizList.forEach(async (item) => {
-      await registQuiz(item.who, item.quiz, item.answer, item.mission);
-    }); */
+    cancelEdit();
   };
 
   return (
@@ -68,11 +75,13 @@ function RegQuiz({ addList }) {
         </div>
         <div className="edit-buttons">
           <button className="btn-modify">등록</button>
-          <button className="btn-delete">취소</button>
+          <button className="btn-delete" onClick={cancelEdit}>
+            취소
+          </button>
         </div>
       </form>
     </div>
   );
 }
 
-export default RegQuiz;
+export default RegForm;

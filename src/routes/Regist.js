@@ -1,6 +1,6 @@
 import { dbService } from "fbase";
 import { useState, useEffect } from "react";
-import RegQuiz from "mixins/RegQuiz";
+import RegForm from "mixins/RegForm";
 import QuizCard from "mixins/QuizCard";
 
 function Regist() {
@@ -37,14 +37,53 @@ function Regist() {
     list.splice(index, 0, { who, quiz, answer, mission, ord });
 
     //리스트 순서 update
-    list.forEach((item, index) => (item.ord = index + 1));
-    setQuizList(list);
+    reOrdList(list);
 
+    console.log("addlist ord ==> " + ord);
     //신규 퀴즈 등록
-    registQuiz(who, quiz, answer, mission, ord);
+    registQuiz(quiz, answer, mission, ord);
 
     //순서(ord) firestore update
-    updateList(ord);
+    updateList(0);
+  };
+
+  const updateOrd = (quiz, aftOrd) => {
+    let list = [...quizList];
+    let index = 0;
+    if (aftOrd > quizList.length + 1) {
+      aftOrd = quizList.length + 1;
+    }
+
+    list.forEach((item, idx) => {
+      if (item.id === quiz.id) {
+        index = idx;
+      }
+    });
+
+    //기존 리스트에 있던 퀴즈 삭제
+    list.splice(index, 1);
+
+    //변경된 퀴즈 추가
+    list.splice(aftOrd - 1, 0, quiz);
+
+    //리스트 순서 update
+    reOrdList(list);
+
+    //리스트 갱신
+    updateList(0);
+  };
+
+  //순서 재정렬
+  const reOrdList = (list) => {
+    //리스트 순서 update
+    list.forEach((item, index) => (item.ord = index + 1));
+    console.log(list);
+
+    //리스트에 set
+    setQuizList(list);
+
+    console.log("re ordered list >> ");
+    console.log(quizList);
   };
 
   /* 순서(ord) firestore update */
@@ -72,6 +111,7 @@ function Regist() {
 
   /* 퀴즈 등록 */
   const registQuiz = async (quiz, answer, mission, ord) => {
+    console.log("ord ==>" + ord);
     await dbService.collection("Question").add({
       who,
       quiz,
@@ -87,7 +127,23 @@ function Regist() {
     const ok = window.confirm("삭제하시겠습니까?");
     if (ok) {
       await dbService.collection("Question").doc(id).delete();
-      getQuizList();
+
+      let list = [...quizList];
+      let index = 0;
+
+      list.forEach((item, idx) => {
+        if (item.id === id) {
+          index = idx;
+        }
+      });
+
+      list.splice(index, 1);
+
+      //리스트 순서 update
+      reOrdList(list);
+
+      updateList(index + 1);
+      //getQuizList();
     }
   };
 
@@ -132,13 +188,23 @@ function Regist() {
         </div>
         {isRegist && (
           <div className="quiz-card reg-mode">
-            <RegQuiz addList={addList} />
+            <RegForm
+              quiz={null}
+              addList={addList}
+              cancelEdit={() => setIsRegist(false)}
+            />
           </div>
         )}
         <div className="quiz-list">
           <ul>
             {quizList.map((quiz, index) => (
-              <QuizCard deleteQuiz={deleteQuiz} quiz={quiz} key={index} />
+              <QuizCard
+                updateQuiz={updateQuiz}
+                deleteQuiz={deleteQuiz}
+                updateOrd={updateOrd}
+                quiz={quiz}
+                key={index}
+              />
             ))}
           </ul>
         </div>
