@@ -49,8 +49,7 @@ function RegForm({ addList, cancelEdit, quiz, updateList }) {
             name="input-answer"
             className="content"
             {...answerInput}
-            placeholder="정답 입력 *"
-            required
+            placeholder="정답 입력"
           />
         </div>
         <div className="quiz-item">

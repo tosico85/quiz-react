@@ -7,21 +7,17 @@ function Home() {
   const [quizHyeon, setQuizHyeon] = useState([]);
 
   const getQuizList = async () => {
-    const docs = await dbService.collection("Question").get();
+    const docs = await dbService.collection("Question").orderBy("ord").get();
 
     let quizList = [];
     docs.forEach((doc) => (quizList = [...quizList, doc.data()]));
-    let quizList_hun = quizList
-      .filter((item) => item.who === "hun")
-      .sort((a, b) => a.createAt - b.createAt);
-    let quizList_hyeon = quizList
-      .filter((item) => item.who === "hyeon")
-      .sort((a, b) => a.createAt - b.createAt);
+    let quizList_hun = quizList.filter((item) => item.who === "hun");
+    let quizList_hyeon = quizList.filter((item) => item.who === "hyeon");
 
     setQuizHun(quizList_hun.map((item, index) => ({ id: index, ...item })));
     setQuizHyeon(quizList_hyeon.map((item, index) => ({ id: index, ...item })));
 
-    console.log(quizList_hun);
+    console.log(quizList_hyeon);
   };
 
   useEffect(() => {

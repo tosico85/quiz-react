@@ -51,6 +51,11 @@ function Board({ who, quiz, onPrev, onNext, updateCorrect, isFirst, isLast }) {
           {!quiz.isCorrect && isSubmit && (
             <h2 className={"result result-red"}>땡! 틀렸습니다..</h2>
           )}
+          {isLast && (
+            <div>
+              <span className="mission-message">{quiz.mission}</span>
+            </div>
+          )}
         </div>
         <div className="button-area">
           {!isFirst && (

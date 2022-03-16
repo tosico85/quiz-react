@@ -30,6 +30,11 @@ function Regist() {
 
   /* 리스트에 퀴즈 추가 후 insert/update */
   const addList = (quiz, answer, mission, ord) => {
+    //순서가 없으면 맨 뒤로
+    if (ord === null || ord === "") {
+      ord = quizList.length + 1;
+    }
+
     const index = ord - 1;
     let list = [...quizList];
 
@@ -82,8 +87,8 @@ function Regist() {
     //리스트에 set
     setQuizList(list);
 
-    console.log("re ordered list >> ");
-    console.log(quizList);
+    // console.log("re ordered list >> ");
+    // console.log(quizList);
   };
 
   /* 순서(ord) firestore update */
@@ -97,6 +102,8 @@ function Regist() {
 
   /* Quiz update */
   const updateQuiz = async (quiz) => {
+    console.log("update >> " + JSON.stringify(quiz));
+
     await dbService
       .collection("Question")
       .doc(quiz.id)
