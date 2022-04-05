@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   HashRouter as Router,
   Route,
@@ -12,9 +12,32 @@ import Auth from "routes/Auth";
 import Regist from "routes/Regist";
 
 const AppRouter = ({ isLoggedIn, userObj }) => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [selectWho, setSelectWho] = useState("all");
+
+  useEffect(() => {
+    const {
+      multiFactor: {
+        user: { email },
+      },
+    } = userObj;
+    if (email === "tosico85@gmail.com") {
+      setIsAdmin(true);
+    }
+  }, []);
+
+  const onChangeView = (who) => {
+    console.log(who);
+    setSelectWho(who);
+  };
+
   return (
     <Router>
-      {isLoggedIn ? <Navigation></Navigation> : ""}
+      {isLoggedIn ? (
+        <Navigation isAdmin={isAdmin} onChangeView={onChangeView}></Navigation>
+      ) : (
+        ""
+      )}
       <Switch>
         {isLoggedIn ? (
           <>
@@ -22,7 +45,7 @@ const AppRouter = ({ isLoggedIn, userObj }) => {
               <Regist userObj={userObj} />
             </Route>
             <Route exact path="/">
-              <Home userObj={userObj} />
+              <Home userObj={userObj} selectWho={selectWho} />
             </Route>
             <Redirect from="/*" to="/" />
           </>

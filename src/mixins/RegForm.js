@@ -32,7 +32,6 @@ function RegForm({ addList, cancelEdit, quiz, updateList }) {
     <div>
       <form onSubmit={onSubmit}>
         <div className="quiz-item">
-          {/* <span className="label">문제</span> */}
           <input
             type="text"
             name="input-quiz"
@@ -43,7 +42,6 @@ function RegForm({ addList, cancelEdit, quiz, updateList }) {
           />
         </div>
         <div className="quiz-item">
-          {/* <span className="label">정답</span> */}
           <input
             type="text"
             name="input-answer"
@@ -53,7 +51,6 @@ function RegForm({ addList, cancelEdit, quiz, updateList }) {
           />
         </div>
         <div className="quiz-item">
-          {/* <span className="label">미션</span> */}
           <input
             type="text"
             name="input-mission"
@@ -63,7 +60,6 @@ function RegForm({ addList, cancelEdit, quiz, updateList }) {
           />
         </div>
         <div className="quiz-item">
-          {/* <span className="label">미션</span> */}
           <input
             type="text"
             name="input-ord"

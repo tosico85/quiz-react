@@ -2,7 +2,7 @@ import Quiz from "mixins/Quiz";
 import { useEffect, useState } from "react";
 import { dbService } from "fbase";
 
-function Home() {
+function Home({ selectWho }) {
   const [quizHun, setQuizHun] = useState([]);
   const [quizHyeon, setQuizHyeon] = useState([]);
 
@@ -18,6 +18,7 @@ function Home() {
     setQuizHyeon(quizList_hyeon.map((item, index) => ({ id: index, ...item })));
 
     console.log(quizList_hyeon);
+    console.log(selectWho);
   };
 
   useEffect(() => {
@@ -26,8 +27,14 @@ function Home() {
 
   return (
     <div className="main">
-      <Quiz who="훈이" quiz_list={quizHun} />
-      <Quiz who="현이" quiz_list={quizHyeon} />
+      {selectWho === "all" && (
+        <>
+          <Quiz who="훈이" quiz_list={quizHun} />
+          <Quiz who="현이" quiz_list={quizHyeon} />
+        </>
+      )}
+      {selectWho === "hun" && <Quiz who="훈이" quiz_list={quizHun} />}
+      {selectWho === "hyeon" && <Quiz who="현이" quiz_list={quizHyeon} />}
     </div>
   );
 }

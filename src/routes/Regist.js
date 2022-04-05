@@ -174,7 +174,7 @@ function Regist() {
     <div className="main">
       <div className="reg-container">
         <div className="reg-header">
-          <div className="reg-header__select">
+          <div className="reg-header__select select-box">
             <select
               id="whoSelect"
               name="whoSelect"
