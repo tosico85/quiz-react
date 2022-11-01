@@ -5,7 +5,7 @@ function Quiz({ who, quiz_list }) {
   const [curIndex, setCurIndex] = useState(0);
 
   const onPrev = () => {
-    if (curIndex < quiz_list.length - 1) {
+    if (curIndex < quiz_list.length) {
       setCurIndex((preIdx) => preIdx - 1);
     }
   };
