@@ -4,7 +4,7 @@ import RegForm from "mixins/RegForm";
 import QuizCard from "mixins/QuizCard";
 
 function Regist() {
-  const [who, setWho] = useState("hun");
+  const [who, setWho] = useState("bong");
   const [isRegist, setIsRegist] = useState(false);
   const [quizList, setQuizList] = useState([]);
 
@@ -182,6 +182,7 @@ function Regist() {
               onChange={changeWho}
               value={who}
             >
+              <option value="bong">봉봉이 문제</option>
               <option value="hun">기훈이 문제</option>
               <option value="hyeon">기현이 문제</option>
             </select>

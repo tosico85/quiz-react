@@ -13,16 +13,18 @@ import Regist from "routes/Regist";
 
 const AppRouter = ({ isLoggedIn, userObj }) => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [selectWho, setSelectWho] = useState("all");
+  const [selectWho, setSelectWho] = useState("bong");
 
   useEffect(() => {
-    const {
-      multiFactor: {
-        user: { email },
-      },
-    } = userObj;
-    if (email === "tosico85@gmail.com") {
-      setIsAdmin(true);
+    if (isLoggedIn) {
+      const {
+        multiFactor: {
+          user: { email },
+        },
+      } = userObj;
+      if (email === "tosico85@gmail.com") {
+        setIsAdmin(true);
+      }
     }
   }, []);
 
